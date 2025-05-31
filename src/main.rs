@@ -53,7 +53,7 @@ struct DropArgs {
     #[arg(
         short = 'a',
         long = "amount",
-        default_value = "0.25",
+        default_value = "0.001",
         value_parser = parse_ether,
     )]
     amount: U256,
@@ -120,7 +120,7 @@ async fn main() -> Result<()> {
                     Ok(pending) => {
                         let receipt = pending
                             .with_required_confirmations(2)
-                            .with_timeout(Some(Duration::from_secs(180)))
+                            .with_timeout(Some(Duration::from_secs(240)))
                             .get_receipt()
                             .await;
 
